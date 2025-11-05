@@ -27,13 +27,13 @@ def list_news():
 @app.route("/news", methods=["POST"])
 def create_news():
   global next_id
-  if not request.json or not ’title’ in request.json:
+  if not request.json or not 'title' in request.json:
     abort(400) # Bad request
 
   new_item = {
-    ’id’: next_id,
-    ’title’: request.json[’title’],
-    ’content’: request.json.get(’content’, "")}
+    'id': next_id,
+    'title': request.json['title'],
+    'content': request.json.get('content', "")}
   news.append(new_item)
   next_id += 1
   return jsonify(new_item), 201 # Created
@@ -41,7 +41,7 @@ def create_news():
 # Helper function to find an item
 def find_news_item(item_id):
   for item in news:
-    if item[’id’] == item_id:
+    if item['id'] == item_id:
       return item
   return None
 
@@ -54,10 +54,10 @@ def update_news(item_id: int):
     abort(400)
 
   # Update fields
-  if ’title’ in request.json:
-    item[’title’] = request.json[’title’]
-  if ’content’ in request.json:
-    item[’content’] = request.json[’content’]
+  if 'title' in request.json:
+    item['title'] = request.json['title']
+  if 'content' in request.json:
+    item['content'] = request.json['content']
   
   return jsonify(item)
 
@@ -71,4 +71,4 @@ def delete_news(item_id: int):
   return jsonify({"status": "deleted", "id": item_id})
 
 if __name__ == "__main__":
-  app.run(threaded=True, host=’0.0.0.0’, port=3000)
+  app.run(threaded=True, host='0.0.0.0', port=3000)
