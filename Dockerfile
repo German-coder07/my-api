@@ -1,6 +1,6 @@
 FROM python:latest
 
-WORKDIR /app
+WORKDIR /my-api
 
 COPY . .
 RUN pip install Flask
